@@ -55,5 +55,6 @@ public class HelpActivity extends Activity implements View.OnClickListener {
 		
 		
 	}
-   
+
+
 }
