@@ -17,4 +17,5 @@ public class Players
   public static final int SOUND_OFF = 1;
   public static final int POWER_ON = 0;
   public static final int POWER_OFF = 1;
+  public static final int THEME_DEFAULT=1;
 }

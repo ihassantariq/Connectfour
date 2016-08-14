@@ -3,6 +3,8 @@ package com.convension.connectfour.activity;
 import  com.convension.connectfour.Connect4App;
 import  com.convension.connectfour.R;
 import com.jgrindall.android.connect4.lib.board.Players;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -86,7 +88,7 @@ public class MainMenuActivity extends ABaseActivity implements View.OnClickListe
 
     }
     private void store(){
-   	 	 SharedPreferences settings = getSharedPreferences(Connect4App.PREFS_NAME, 0);
+   	 	 SharedPreferences settings = getSharedPreferences(Connect4App.PREFS_NAME, Context.MODE_PRIVATE);
 	     SharedPreferences.Editor editor = settings.edit();
 	     int d = getDiff();
 	     int p = getPlay();
@@ -96,6 +98,7 @@ public class MainMenuActivity extends ABaseActivity implements View.OnClickListe
 	     editor.putInt(Connect4App.PREFS_PLAY,p);
 	     editor.putInt(Connect4App.PREFS_TURN,t);
 	     editor.putInt(Connect4App.PREFS_POWER,pw);
+		 editor.putInt (Connect4App.PREFS_THEME,Players.THEME_DEFAULT);
 	     editor.commit();
    }
     private void load(){

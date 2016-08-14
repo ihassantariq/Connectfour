@@ -3,31 +3,18 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    
-    >
-	
-	
-	
+    android:padding="12dp">
 	<LinearLayout
-		
 		android:layout_alignParentLeft="true"
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:id="@+id/your_icon"
 		android:paddingRight="5dp">
-		
-		<ImageView 
-		  
-		  	android:src="@drawable/red"
+		<ImageView
 		    android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
 			android:scaleType="centerInside"
-			android:id="@+id/comp_icon"
-			
-		/> 
-		
-		
+			android:id="@+id/left_icon"/>
 	
 	</LinearLayout>
 	
@@ -44,28 +31,23 @@
 	/>
 	
 	
-	<LinearLayout 
-	
-		
+	<LinearLayout
 		android:layout_alignParentRight="true"
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:id="@+id/comp_icon"
 		android:paddingLeft="5dp">
 	
-	<ImageView 
-		  	
-		  	android:src="@drawable/green"
+	<ImageView
 		    android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
+			android:id="@+id/right_icon"
 			android:scaleType="centerInside"/>
-		
-			
 	
 	</LinearLayout>
 	
 	<TextView
-		android:layout_width="wrap_content" 
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		android:text="Computer"

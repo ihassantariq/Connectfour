@@ -66,8 +66,3 @@ public class Minimax
   }
 }
 
-
-/* Location:              C:\Users\Hassan\Desktop\connectfourjar\connect4Lib.jar!\com\jgrindall\android\connect4\lib\algorithm\Minimax.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       0.7.1
- */

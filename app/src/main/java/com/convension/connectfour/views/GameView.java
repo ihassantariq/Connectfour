@@ -76,10 +76,10 @@ public class GameView extends FrameLayout implements View.OnTouchListener, IOnUn
 	}
 	private int getPieceId(){
 		if(board.getPlayersGo()==Players.PLAYER1){
-			return R.layout.redpiece;
+			return R.layout.firstpiece;
 		}
 		else{
-			return R.layout.greenpiece;
+			return R.layout.secondpiece;
 		}
 	}
 	private int getPowerId(){
@@ -100,6 +100,9 @@ public class GameView extends FrameLayout implements View.OnTouchListener, IOnUn
 		mp.leftMargin  =  gameBoard.getX(i);
 		mp.topMargin =    gameBoard.getY(0);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(mp);
+		//ViewGroup viewGroup=(ViewGroup)newPiece;
+		ImageView imageView= (ImageView )newPiece;
+		Util.getInstance ().setImageViewDrawable (imageView,getPieceId (),getContext ());
 		piecesFrame.addView(newPiece, params);
 		if(p){
 			powerBall.setHasBeenPlayed(true);

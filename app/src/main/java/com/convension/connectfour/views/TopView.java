@@ -2,6 +2,7 @@ package com.convension.connectfour.views;
 
 import  com.convension.connectfour.R;
 import  com.convension.connectfour.inter.*;
+import com.convension.connectfour.utils.Util;
 import com.jgrindall.android.connect4.lib.board.*;
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,10 +11,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
+import android.media.Image;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,14 +24,18 @@ public class TopView extends RelativeLayout implements IOnTurnChangeListener{
 
 	private Resources res;
 	private TextView t1,t2;
+	private ImageView mLeftImageView,mRightImageView;
 	public int turn = Players.PLAYER1;
+	public Context mContext;
 	
 	public TopView(Context c, AttributeSet a){
 		super(c,a);
+		mContext=c;
 		init();
 	}
 	public TopView(Context c){
 		super(c);
+		mContext=c;
 		init();
 	}
 	public void setTurn(int i){
@@ -38,6 +45,7 @@ public class TopView extends RelativeLayout implements IOnTurnChangeListener{
 	private void inflate(){
 		LayoutInflater linf = (LayoutInflater)(getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));
 		linf.inflate(R.layout.top, this);
+
 	}
 	private int dpToPix(float f){
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, f, res.getDisplayMetrics());
@@ -48,6 +56,12 @@ public class TopView extends RelativeLayout implements IOnTurnChangeListener{
 		this.setWillNotDraw(false);
 		t1 = (TextView)this.findViewById(R.id.your_text);
 		t2 = (TextView)this.findViewById(R.id.comp_text);
+		mLeftImageView=(ImageView)this.findViewById (R.id.left_icon);
+		mRightImageView=(ImageView)this.findViewById (R.id.right_icon);
+		adjustTheme();
+	}
+	private void adjustTheme() {
+		Util.getInstance ().setIcons (mLeftImageView,mRightImageView,mContext);
 	}
 	public void setNumPlayers(int p){
 		if(p==Players.ONE_PLAYER){

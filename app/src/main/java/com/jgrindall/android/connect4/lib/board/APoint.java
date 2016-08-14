@@ -60,9 +60,3 @@ public class APoint implements Comparable<APoint>
     return arrayOfAPoint;
   }
 }
-
-
-/* Location:              C:\Users\Hassan\Desktop\connectfourjar\connect4Lib.jar!\com\jgrindall\android\connect4\lib\board\APoint.class
- * Java compiler version: 6 (50.0)
- * JD-Core Version:       0.7.1
- */
