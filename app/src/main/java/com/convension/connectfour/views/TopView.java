@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
-import android.media.Image;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -69,8 +68,34 @@ public class TopView extends RelativeLayout implements IOnTurnChangeListener{
 			t2.setText("Computer");
 		}
 		else{
-			t1.setText("Player 1");
-			t2.setText("Player 2");
+			t1.setText(Players.FIRST_PLAYER);
+			t2.setText(Players.SECOND_PLAYER);
+		}
+		//Server Player
+		if(Players.IS_MULTIPLAYER_SERVER) {
+			if(Players.IS_SERVER) {
+				if(Players.FIRST_PLAYER.length ()>15) {
+					t1.setText (Players.FIRST_PLAYER.substring (0,14)+"..");
+				}else{
+					t1.setText (Players.FIRST_PLAYER);
+				}
+				if(Players.SECOND_PLAYER.length ()>15) {
+					t2.setText (Players.SECOND_PLAYER.substring (0,14)+"..");
+				}else{
+					t2.setText (Players.SECOND_PLAYER);
+				}
+			}else{
+				if(Players.FIRST_PLAYER.length ()>15) {
+					t2.setText (Players.FIRST_PLAYER.substring (0,14)+"..");
+				}else{
+					t2.setText (Players.FIRST_PLAYER);
+				}
+				if(Players.SECOND_PLAYER.length ()>15) {
+					t1.setText (Players.SECOND_PLAYER.substring (0,14)+"..");
+				}else{
+					t1.setText (Players.SECOND_PLAYER);
+				}
+			}
 		}
 	}
 	@Override

@@ -20,10 +20,14 @@
 	
 	
 	<TextView
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_height="32dp"
 		android:layout_weight="1"
-		android:text="You"
+		android:gravity="center"
+		android:ellipsize="end"
+		android:singleLine="true"
+		android:maxLength="20"
+		android:text=""
 		android:id="@+id/your_text"
 		android:paddingLeft="5dp"
 		android:layout_toRightOf="@+id/your_icon"
@@ -48,10 +52,14 @@
 	
 	<TextView
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_height="32dp"
 		android:layout_weight="1"
-		android:text="Computer"
-		android:paddingRight="6dp"
+		android:gravity="center"
+		android:ellipsize="end"
+		android:singleLine="true"
+		android:maxLength="10"
+		android:text=""
+		android:paddingRight="5dp"
 		android:id="@+id/comp_text"
 		android:layout_toLeftOf="@+id/comp_icon"
 		style="@style/LabelText"

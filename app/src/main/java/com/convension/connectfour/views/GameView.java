@@ -102,7 +102,13 @@ public class GameView extends FrameLayout implements View.OnTouchListener, IOnUn
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(mp);
 		//ViewGroup viewGroup=(ViewGroup)newPiece;
 		ImageView imageView= (ImageView )newPiece;
-		Util.getInstance ().setImageViewDrawable (imageView,getPieceId (),getContext ());
+		int id=0;
+		if(!powerPressed) {
+			id = getPieceId ();
+		}else{
+			id=getPowerId ();
+		}
+		Util.setImageViewDrawable (imageView,id,getContext ());
 		piecesFrame.addView(newPiece, params);
 		if(p){
 			powerBall.setHasBeenPlayed(true);
@@ -223,6 +229,7 @@ public class GameView extends FrameLayout implements View.OnTouchListener, IOnUn
 	public void restart(){
 		computerGo();
 	}
+	//drop function is basically doing everything from dropping to the next player action and setting the alternative
 	private void dropped(){
 		if(numPlayers==Players.ONE_PLAYER && board.getPlayersGo()==Players.PLAYER2){
 			enableBottomButtons(true);
@@ -262,6 +269,7 @@ public class GameView extends FrameLayout implements View.OnTouchListener, IOnUn
 		}
 		if(numPlayers==Players.TWO_PLAYERS){
 			enableBoard(true);
+			//here I had to send message. to another player.
 		}
 		else{
 			if(board.getPlayersGo()==Players.PLAYER2){

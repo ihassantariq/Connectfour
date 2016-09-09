@@ -17,6 +17,7 @@ public class MainMenuActivity extends ABaseActivity implements View.OnClickListe
 	private Button setButton;
 	private Button playButton;
 	private Button helpButton;
+	private Button mMultiplayer;
 	private RadioGroup diffGroup;
 	private RadioGroup turnGroup;
 	private RadioButton diff0, diff1, diff2;
@@ -117,6 +118,8 @@ public class MainMenuActivity extends ABaseActivity implements View.OnClickListe
     private void init(){
     	playButton = (Button)(this.findViewById(R.id.play_button));
     	playButton.setOnClickListener(this);
+		mMultiplayer=(Button)(this.findViewById(R.id.multiplayer_button));
+		mMultiplayer.setOnClickListener(this);
     	setButton = (Button)(this.findViewById(R.id.open_settings));
     	setButton.setOnClickListener(this);
     	helpButton = (Button)(this.findViewById(R.id.open_help));
@@ -169,6 +172,10 @@ public class MainMenuActivity extends ABaseActivity implements View.OnClickListe
 		if(v.getId()==R.id.open_settings){
 			Intent intent = new Intent(this, SettingsActivity.class);
 	        startActivity(intent);
+		}
+		else if(v.getId()==R.id.multiplayer_button){
+			Intent intent = new Intent(this, Connect4MultiplayerActivity.class);
+			startActivity(intent);
 		}
 		else if(v.getId()==R.id.play_button){
 			store();

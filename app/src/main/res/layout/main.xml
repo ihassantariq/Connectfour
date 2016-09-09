@@ -9,32 +9,23 @@
 		android:src="@drawable/wood"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:scaleType="fitXY"
-	
-	/>
+		android:scaleType="fitXY"/>
 			<Button android:id="@+id/powerbutton"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:text="  POWER  "  
 			>
 			</Button>
-
-	
-	
 	<LinearLayout 
 	    android:orientation="vertical"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:padding="6dp"
-	    android:gravity="center_horizontal"
-	    >
+	    android:gravity="center_horizontal">
 		<com.convension.connectfour.views.TopView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:id ="@+id/topview"
-			
-		
-		/>
+			android:id ="@+id/topview"/>
 		
 	
 		
@@ -42,7 +33,6 @@
 		 <com.convension.connectfour.views.GameView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			
 			android:id ="@+id/gameview"
 			android:layout_weight="1"
 			
@@ -54,10 +44,8 @@
 		<com.convension.connectfour.views.BottomView
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			
 			android:id ="@+id/bottomview"
-			
-		/>
+			/>
 		
 		
 		

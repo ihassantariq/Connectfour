@@ -17,12 +17,12 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 public class Connect4Activity extends ABaseActivity implements IOnDebugListener,IOptionsListener,IOnExitListener, OnClickListener {
 	
-	private TopView tV;
-	private GameView gV;
-	private BottomView bV;
-	private TextView dV;
-	private Button powerButton;
-	private boolean compInterrupted = false;
+	private TopView mtopView;
+	private GameView mGameView;
+	private BottomView mBottomView;
+	private TextView mDecorView;
+	private Button mPowerButton;
+	private boolean mCompInterrupted = false;
 	
 	
     /** Called when the activity is first created. */
@@ -43,24 +43,24 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
     	if(!Connect4App.DEBUG){
     		return;
     	}
-    	if(dV!=null){
+    	if( mDecorView !=null){
     		if(s==""){
-    			dV.setText("");
+    			mDecorView.setText("");
     		}
     		else{
-    			dV.setText(dV.getText()+"\n"+s);
+    			mDecorView.setText(mDecorView.getText()+"\n"+s);
     		}
     	}
     }
     private void init(){
-    	tV = (TopView)this.findViewById(R.id.topview);
-    	gV = (GameView)this.findViewById(R.id.gameview);
-    	bV = (BottomView)this.findViewById(R.id.bottomview);
-    	dV = (TextView)this.findViewById(R.id.debugtext);
+    	mtopView = (TopView)this.findViewById(R.id.topview);
+    	mGameView = (GameView)this.findViewById(R.id.gameview);
+    	mBottomView = (BottomView)this.findViewById(R.id.bottomview);
+    	mDecorView = (TextView)this.findViewById(R.id.debugtext);
     	if(!Connect4App.DEBUG){
-    		dV.setVisibility(View.GONE);
+    		mDecorView.setVisibility(View.GONE);
     	}
-    	powerButton = (Button)(this.findViewById(R.id.powerbutton));
+    	mPowerButton = (Button)(this.findViewById(R.id.powerbutton));
     	addListeners();
     	startGame();
     	
@@ -69,21 +69,21 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
     	SharedPreferences settings = getSharedPreferences(Connect4App.PREFS_NAME, 0);
         int d = settings.getInt(Connect4App.PREFS_DIFF, Players.DIFF_EASY);
         int p = settings.getInt(Connect4App.PREFS_PLAY, Players.ONE_PLAYER);
-    	gV.setDepth(AlgorithmConsts.getDefaultDepth());
-    	gV.setDifficulty(d);
-    	gV.setOnExitListener(this);
-    	tV.setNumPlayers(p);
+    	mGameView.setDepth(AlgorithmConsts.getDefaultDepth());
+    	mGameView.setDifficulty(d);
+    	mGameView.setOnExitListener(this);
+    	mtopView.setNumPlayers(p);
     	
     }
     private void reload(){
-    	debug("compInterrupted "+compInterrupted);
-    	if(compInterrupted){
-    		gV.restart();
+    	debug("mCompInterrupted "+ mCompInterrupted);
+    	if( mCompInterrupted ){
+    		mGameView.restart();
     	}
     }
     private void gameInflated(){
     	this.debug("inflated");
-    	gV.inflated();
+    	mGameView.inflated();
     }
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState){
@@ -113,8 +113,8 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
     }
     private void cleanUp(){
     	this.debug("cleanUp");
-    	if(gV!=null){
-    		compInterrupted = gV.cleanUp();
+    	if( mGameView !=null){
+    		mCompInterrupted = mGameView.cleanUp();
     	}
     }
     public void onStop(){
@@ -128,26 +128,26 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
     	cleanUp();
     }
     private void addListeners(){
-    	bV.setOnNewGameListener(gV);
-    	bV.setOnUndoListener(gV);
-    	bV.setOnOptionsListener(this);
-    	gV.setOnTurnChangeListener(tV);
-    	gV.setOnBottomListener(bV);
-    	gV.setOnDebugListener(this);
-    	ViewTreeObserver vto = gV.getViewTreeObserver();
+    	mBottomView.setOnNewGameListener(mGameView);
+    	mBottomView.setOnUndoListener(mGameView);
+    	mBottomView.setOnOptionsListener(this);
+    	mGameView.setOnTurnChangeListener(mtopView);
+    	mGameView.setOnBottomListener(mBottomView);
+    	mGameView.setOnDebugListener(this);
+    	ViewTreeObserver vto = mGameView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 gameInflated();
-                ViewTreeObserver obs = gV.getViewTreeObserver();
+                ViewTreeObserver obs = mGameView.getViewTreeObserver();
                 obs.removeGlobalOnLayoutListener(this);
             }
         });
         if(Connect4App.DEBUG){
-    		powerButton.setOnClickListener(this);
+    		mPowerButton.setOnClickListener(this);
     	}
     	else{
-    		powerButton.setVisibility(View.INVISIBLE);
+    		mPowerButton.setVisibility(View.INVISIBLE);
     	}
     }
     
@@ -156,8 +156,8 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
     	finish();
     }
     private void openLeaveDialog(){
-    	final boolean wasEnabled = gV.getBoardEnabled();
-    	gV.enableBoard(false);
+    	final boolean wasEnabled = mGameView.getBoardEnabled();
+    	mGameView.enableBoard(false);
     	final Dialog dialog = new Dialog(this,R.style.MyDialog);
         dialog.setContentView(R.layout.leave);
         TextView tV = (TextView)dialog.findViewById(R.id.leave_msg);
@@ -171,13 +171,13 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
         	@Override
         	public void onClick(View v) {
         		dialog.dismiss();
-        		gV.enableBoard(wasEnabled);
+        		mGameView.enableBoard(wasEnabled);
             }
         });
         ((Button) dialog.findViewById(R.id.leave_quit)).setOnClickListener(new OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		gV.enableBoard(wasEnabled);
+        		mGameView.enableBoard(wasEnabled);
         		back();
             }
         });
@@ -208,8 +208,7 @@ public class Connect4Activity extends ABaseActivity implements IOnDebugListener,
 	}
 	@Override
 	public void onClick(View v) {
-		gV.powerPressed();
-		
+		mGameView.powerPressed();
 	}
 	
     

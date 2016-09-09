@@ -40,6 +40,9 @@ public class Util {
                 imageView.setImageDrawable (mContext.getResources ().getDrawable (R.drawable.red));
             else if(id==R.layout.secondpiece)
                 imageView.setImageDrawable (mContext.getResources ().getDrawable (R.drawable.green));
+            else if(id==R.layout.powerpiece) {
+                imageView.setImageDrawable (mContext.getResources ().getDrawable (R.drawable.power));
+            }
         }
     }
 

@@ -55,9 +55,3 @@ public class DecorView extends RelativeLayout {
 	}
 	
 }
-
-
-
-
-
-
